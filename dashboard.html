@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CampusFit - Dashboard</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- navigation -->
+  <div class="sidebar">
+    <h2>CampusFit</h2>
+    <a id="nav-home" onclick="showPage('home')">Dashboard</a>
+    <a id="nav-members" onclick="showPage('members')">Members</a>
+    <a id="nav-attendance" onclick="showPage('attendance')">Attendance</a>
+    <a id="nav-schedule" onclick="showPage('schedule')">Schedule</a>
+    <a id="nav-equipment" onclick="showPage('equipment')">Equipment</a>
+    <a id="nav-settings" onclick="showPage('settings')">Settings</a>
+
+    <div class="logout">
+      <p id="user-name"></p>
+      <button onclick="logout()">Log out</button>
+    </div>
+  </div>
+
+  <div class="main">
+
+    <!-- DASHBOARD -->
+    <div class="page" id="page-home">
+      <h1>Dashboard</h1>
+      <div class="cards">
+        <div class="card">
+          <h1 id="stat-inside">0</h1>
+          <p id="stat-capacity">people inside</p>
+          <div class="bar-outer"><div class="bar-inner" id="stat-bar" style="width: 0%"></div></div>
+        </div>
+        <div class="card"><h1 id="stat-today">0</h1><p>Check-ins today</p></div>
+        <div class="card"><h1 id="stat-members">0</h1><p>Active members</p></div>
+        <div class="card"><h1 id="stat-tickets">0</h1><p>Open equipment faults</p></div>
+      </div>
+
+      <h3>Who is inside right now</h3>
+      <table>
+        <thead><tr><th>Name</th><th>Time in</th></tr></thead>
+        <tbody id="home-inside"></tbody>
+      </table>
+    </div>
+
+    <!-- MEMBERS -->
+    <div class="page" id="page-members">
+      <h1>Members</h1>
+      <div class="form-row">
+        <div><label>Name</label><input type="text" id="m-name"></div>
+        <div><label>Email</label><input type="email" id="m-email"></div>
+        <div>
+          <label>Plan</label>
+          <select id="m-plan">
+            <option>Day pass</option>
+            <option selected>Monthly</option>
+            <option>Semester</option>
+            <option>Annual</option>
+          </select>
+        </div>
+        <button class="green" onclick="addMember()">Add member</button>
+      </div>
+      <input type="text" id="m-search" placeholder="Search by name..." onkeyup="showMembers()">
+      <table>
+        <thead><tr><th>ID</th><th>Name</th><th>Plan</th><th>Expires</th><th>Status</th><th></th></tr></thead>
+        <tbody id="members-table"></tbody>
+      </table>
+    </div>
+
+    <!-- ATTENDANCE -->
+    <div class="page" id="page-attendance">
+      <h1>Attendance</h1>
+      <div class="form-row">
+        <div>
+          <label>Member</label>
+          <select id="a-member"></select>
+        </div>
+        <button class="green" onclick="checkIn()">Check in</button>
+      </div>
+      <table>
+        <thead><tr><th>Name</th><th>In</th><th>Out</th><th></th></tr></thead>
+        <tbody id="attendance-table"></tbody>
+      </table>
+    </div>
+
+    <!-- SCHEDULE -->
+    <div class="page" id="page-schedule">
+      <h1>Schedule</h1>
+      <div class="form-row">
+        <div><label>Session name</label><input type="text" id="s-name"></div>
+        <div><label>Coach</label><input type="text" id="s-coach"></div>
+        <div><label>Date</label><input type="date" id="s-date"></div>
+        <div><label>Time</label><input type="time" id="s-time"></div>
+        <div><label>Max people</label><input type="number" id="s-max" value="20"></div>
+        <button class="green" onclick="addSession()">Add session</button>
+      </div>
+      <table>
+        <thead><tr><th>Session</th><th>Coach</th><th>Date</th><th>Time</th><th>Booked</th><th></th></tr></thead>
+        <tbody id="schedule-table"></tbody>
+      </table>
+    </div>
+
+    <!-- EQUIPMENT -->
+    <div class="page" id="page-equipment">
+      <h1>Equipment</h1>
+      <div class="form-row">
+        <div><label>Equipment</label><input type="text" id="e-name"></div>
+        <div><label>What is wrong?</label><input type="text" id="e-problem"></div>
+        <button class="green" onclick="addTicket()">Log fault</button>
+      </div>
+      <table>
+        <thead><tr><th>Equipment</th><th>Problem</th><th>Status</th><th></th></tr></thead>
+        <tbody id="equipment-table"></tbody>
+      </table>
+    </div>
+
+    <!-- SETTINGS -->
+    <div class="page" id="page-settings">
+      <h1>Settings</h1>
+      <div class="form-row">
+        <div><label>Gym capacity</label><input type="number" id="set-capacity"></div>
+        <button class="green" onclick="saveCapacity()">Save</button>
+      </div>
+      <button onclick="resetData()" class="red">Reset all gym data</button>
+    </div>
+
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/dashboard.js"></script>
+  <script src="js/auth.js"></script>
+  <script type="module" src="js/dashboard.js"></script>
+
+</body>
+</html>

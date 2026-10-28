@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CampusFit - Sign up</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="login-page">
+    <div class="login-box">
+      <h1>Create account</h1>
+      <p>Register a new admin</p>
+
+      <div id="error" class="error"></div>
+
+    <label>Username</label>
+    <input type="text" id="username">
+    <label>Email</label>
+    <input type="email" id="email">
+    <label>Password</label>
+    <input type="password" id="password">
+    <label>Confirm password</label>
+    <input type="password" id="confirm">
+
+      <button class="green" onclick="signup()">Sign up</button>
+
+      <p class="small-text">Already have an account? <a href="index.html">Log in</a></p>
+    </div>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/signup.js"></script>
+  <script type="module" src="js/auth.js"></script>
+  
+  
+</body>
+</html>
